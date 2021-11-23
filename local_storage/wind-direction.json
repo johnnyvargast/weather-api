@@ -1,0 +1,68 @@
+{
+  "en": [
+    {
+      "label": "North",
+      "wind": 0
+    },
+    {
+      "label": "North-Northeast",
+      "wind": 22.5
+    },
+    {
+      "label": "Northeast",
+      "wind": 45
+    },
+    {
+      "label": "East-Northeast",
+      "wind": 67.5
+    },
+    {
+      "label": "East",
+      "wind": 90
+    },
+    {
+      "label": "East-Southeast",
+      "wind": 112.5
+    },
+    {
+      "label": "Southeast",
+      "wind": 135
+    },
+    {
+      "label": "South-Southeast",
+      "wind": 157.5
+    },
+    {
+      "label": "South",
+      "wind": 180
+    },
+    {
+      "label": "South-Southwest",
+      "wind": 202.5
+    },
+    {
+      "label": "Southwest",
+      "wind": 225
+    },
+    {
+      "label": "West-Southwest",
+      "wind": 247.5
+    },
+    {
+      "label": "West",
+      "wind": 270
+    },
+    {
+      "label": "West-Northwest",
+      "wind": 292.5
+    },
+    {
+      "label": "Northwest",
+      "wind": 315
+    },
+    {
+      "label": "North-Northwest",
+      "wind": 337.5
+    }
+  ]
+}
