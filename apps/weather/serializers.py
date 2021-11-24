@@ -20,14 +20,15 @@ class WeatherSerializer(serializers.Serializer):
     requested_time = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
-        coord = args[0].get("coord")
-        self.timezone = TimezoneFinder().timezone_at(lng=coord["lon"], lat=coord["lat"])
+        if args:
+            coord = args[0].get("coord")
+            self.timezone = TimezoneFinder().timezone_at(lng=coord["lon"], lat=coord["lat"])
         super().__init__(*args, **kwargs)
 
     def get_location_name(self, obj):
         return "{}, {}".format(obj["name"], obj["sys"]["country"])
 
-    def get_temperature(self, obj):
+    def get_temperature(self, obj) -> dict:
         celsius = "{} °C".format(round(obj["main"]["temp"], 1))
         fahrenheit = "{} °F".format(round((obj["main"]["temp"] * (9 / 5)) + 32, 1))
         return {

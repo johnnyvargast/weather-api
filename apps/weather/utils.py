@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 
 import pytz
+from drf_spectacular.utils import OpenApiParameter
 
 
 def get_wind_speed(speed: float):
@@ -57,3 +58,11 @@ def get_date_string_from_timestamp(value: int, date_format: str = '%H:%M:%S', tz
 
     date = date.strftime(date_format)
     return date
+
+
+def weather_detail_parameters():
+    """ parameters received by the weather details endpoint of a city """
+    return [
+        OpenApiParameter(name='city', required=True, type=str),
+        OpenApiParameter(name='country', required=False, type=str),
+    ]

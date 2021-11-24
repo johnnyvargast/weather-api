@@ -3,6 +3,7 @@ import logging
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
@@ -10,6 +11,7 @@ from rest_framework.response import Response
 import requests as req
 
 from apps.weather.serializers import WeatherSerializer
+from apps.weather.utils import weather_detail_parameters
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +29,7 @@ class WeatherDetail(APIView):
     ]
 
     @method_decorator(cache_page(60 * 2))
+    @extend_schema(responses={status.HTTP_200_OK: WeatherSerializer()}, parameters=weather_detail_parameters())
     def get(self, request, *args, **kwargs):
         # Validate that they only receive set filters
         if list(set(request.GET.keys()) - set(self.filters)):
