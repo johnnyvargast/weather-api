@@ -36,6 +36,26 @@ python manage.py runserver
 ```
 And navigate to http://127.0.0.1:8000/
 
+---
+
+### Using `docker`
+
+You can also use docker directly and use the following commands:
+
+```
+$ docker build -t weather_api .
+$ docker run --rm -t -p 9000:9000 --env-file .env weather_api
+```
+
+### Using `docker-compose`
+
+```
+docker-compose up --build
+```
+
+And navigate to http://127.0.0.1:9000/
+
+---
 
 ## Tests
 

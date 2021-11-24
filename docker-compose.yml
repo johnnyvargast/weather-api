@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app/
+    env_file:
+      - .env  
+    ports:
+      - 9000:9000
+    tty: true
