@@ -25,7 +25,7 @@ class WeatherSerializer(serializers.Serializer):
             self.timezone = TimezoneFinder().timezone_at(lng=coord["lon"], lat=coord["lat"])
         super().__init__(*args, **kwargs)
 
-    def get_location_name(self, obj):
+    def get_location_name(self, obj) -> str:
         return "{}, {}".format(obj["name"], obj["sys"]["country"])
 
     def get_temperature(self, obj) -> dict:
@@ -36,35 +36,35 @@ class WeatherSerializer(serializers.Serializer):
             "fahrenheit": fahrenheit,
         }
 
-    def get_wind(self, obj):
+    def get_wind(self, obj) -> str:
         wind_speed_text = get_wind_speed(speed=obj["wind"]["speed"])
         wind_speed = obj["wind"]["speed"]
         wind_direction = get_wind_direction(value=obj["wind"]["deg"])
         return "{}, {} m/s, {}".format(wind_speed_text, wind_speed, wind_direction)
 
-    def get_cloudiness(self, obj):
+    def get_cloudiness(self, obj) -> str:
         return obj["weather"][0]["description"].capitalize()
 
-    def get_pressure(self, obj):
+    def get_pressure(self, obj) -> str:
         return "{} hpa".format(obj["main"]["pressure"])
 
-    def get_humidity(self, obj):
+    def get_humidity(self, obj) -> str:
         return "{}%".format(obj["main"]["humidity"])
 
-    def get_sunrise(self, obj):
+    def get_sunrise(self, obj) -> str:
         ts = int(obj["sys"]["sunrise"])
         return get_date_string_from_timestamp(value=ts, tz=self.timezone)
 
-    def get_sunset(self, obj):
+    def get_sunset(self, obj) -> str:
         ts = int(obj["sys"]["sunset"])
         return get_date_string_from_timestamp(value=ts, tz=self.timezone)
 
-    def get_geo_coordinates(self, obj):
+    def get_geo_coordinates(self, obj) -> str:
         lon = obj["coord"]["lon"]
         lat = obj["coord"]["lat"]
         return "[{}, {}]".format(lat, lon)
 
-    def get_requested_time(self, obj):
+    def get_requested_time(self, obj) -> str:
         get_date_string_from_timestamp(value=obj["dt"])
         return django_datetime.now(pytz.timezone(self.timezone)).strftime('%Y-%m-%d %H:%M:%S')
 
